@@ -19,3 +19,5 @@
 ![](https://github.com/khdevnet/automated-testing/blob/master/src/bug-fix-costs-on-stages.png)
 ### Automation tests types
 ![](https://github.com/khdevnet/automated-testing/blob/master/src/test-types.png)
+### Bugs detection and fix flows
+![](https://github.com/khdevnet/automated-testing/blob/master/src/bugs-fix-verification.png)
