@@ -18,3 +18,12 @@
 * Use descriptive methods and class names to describe Test Case in your code, use Domain Specific Languages (DSLs)
 ### Running tests
 ![](https://github.com/khdevnet/automated-testing/blob/master/framework/docs/runnig-tests.png)
+
+### Automation tests integration
+* Add it to CI/CD
+* Run tests in paralel
+* Use cloud scaling for better performance
+* Write your own DSL with ANTLR
+* Make it part od DoD (Definition of Done)
+* Developers shouldn't ignore automation tests
+
