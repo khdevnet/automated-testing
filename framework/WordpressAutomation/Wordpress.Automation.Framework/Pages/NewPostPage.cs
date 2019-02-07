@@ -1,22 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using OpenQA.Selenium;
+using Wordpress.Automation.Framework.Navigation;
+using Wordpress.Automation.Framework.Selenium;
 
-namespace Wordpress.Automation.Framework
+namespace Wordpress.Automation.Framework.Pages
 {
     public class NewPostPage
     {
         public static void GoTo()
         {
-            var menuPosts = Driver.Instance.FindElement(By.Id("menu-posts"));
-            menuPosts.Click();
-
-            var addNew = Driver.Instance.FindElement(By.LinkText("Add New"));
-            addNew.Click();
+            LeftNavigation.Posts.AddNew.Select();
         }
 
         public static CreatePostCommand CreatePost(string title)
@@ -26,23 +20,23 @@ namespace Wordpress.Automation.Framework
 
         public static void GoToNewPost()
         {
-            var message = Driver.Instance.FindElement(By.Id("message"));
+            var message = Driver.Instance.FindElement(By.XPath("//div[@class='components-panel__body post-publish-panel__postpublish-header is-opened']"));
             var newPostlink = message.FindElements(By.TagName("a"))[0];
             newPostlink.Click();
         }
 
         public static bool IsInEditMode()
         {
-            return Driver.Instance.FindElement(By.Id("icon-edit-pages")) != null;
+            return Driver.Instance.FindElement(By.XPath("//div[@class='edit-post-header__settings']//button[@aria-disabled='true']")) != null;
         }
 
         public static string Title
         {
             get
             {
-                var title = Driver.Instance.FindElement(By.Id("title"));
+                var title = Driver.Instance.FindElement(By.Id("post-title-0"));
                 if (title != null)
-                    return title.GetAttribute("value");
+                    return title.Text;
                 return string.Empty;
             }
         }
@@ -67,15 +61,14 @@ namespace Wordpress.Automation.Framework
         public void Publish()
         {
             Driver.Instance.FindElement(By.Id("post-title-0")).SendKeys(title);
+            Driver.Instance.FindElement(By.ClassName("editor-block-list__layout")).Click();
             Driver.Instance.FindElement(By.Id("mce_0")).SendKeys(body);
 
-            //Driver.Instance.SwitchTo().Frame("mce_0");
-            //Driver.Instance.SwitchTo().ActiveElement().SendKeys(body);
-            //Driver.Instance.SwitchTo().DefaultContent();
+            Driver.Wait(TimeSpan.FromSeconds(1));
+            Driver.Instance.FindElement(By.XPath("//div[@class='edit-post-header__settings']/button[contains(text(),'Publish…')]")).Click();
+            Driver.Instance.FindElement(By.XPath("//div[@class='editor-post-publish-panel__header-publish-button']//button[@type='button'][contains(text(),'Publish')]")).Click();
+            Driver.Wait(TimeSpan.FromSeconds(2));
 
-            Thread.Sleep(1000);
-
-            Driver.Instance.FindElement(By.ClassName("components-button editor-post-publish-panel__toggle is-button is-primary")).Click();
         }
     }
 }

@@ -1,21 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Automation.Framework.Core.Selenium;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
 
-namespace Wordpress.Automation.Framework
+namespace Wordpress.Automation.Framework.Pages
 {
-    public class LoginPage
+    public class LoginPage : PageBase
     {
+        public static bool IsAt => Driver.Instance.FindElements(By.Id("login")).Count > 0;
+
         public static void GoTo()
         {
-            Driver.Instance.Navigate().GoToUrl("http://localhost:8090/wp-login.php");
-            var wait = new WebDriverWait(Driver.Instance, TimeSpan.FromSeconds(10));
-            wait.Until(d => d.SwitchTo().ActiveElement().GetAttribute("id") == "user_login");
+            Driver.Instance.Navigate().GoToUrl($"{Driver.BaseAddress}/wp-login.php");
+            Driver.Wait(TimeSpan.FromSeconds(1));
         }
 
         public static LoginCommand LoginAs(string userName)
@@ -43,9 +39,11 @@ namespace Wordpress.Automation.Framework
         public void Login()
         {
             var loginInput = Driver.Instance.FindElement(By.Id("user_login"));
+            loginInput.Clear();
             loginInput.SendKeys(userName);
 
             var passwordInput = Driver.Instance.FindElement(By.Id("user_pass"));
+            passwordInput.Clear();
             passwordInput.SendKeys(password);
 
             var loginButton = Driver.Instance.FindElement(By.Id("wp-submit"));

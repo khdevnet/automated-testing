@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OpenQA.Selenium;
+using Automation.Framework.Core.Selenium;
 
-namespace Wordpress.Automation.Framework
+namespace Wordpress.Automation.Framework.Pages
 {
     public class PostPage
     {

@@ -1,29 +1,26 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Wordpress.Automation.Framework;
+using Wordpress.Automation.Framework.Pages;
+using Wordpress.Automation.Framework.Selenium;
+using Wordpress.Automation.Framework.Workflows;
 
 namespace Wordpress.Tests
 {
-    [TestClass]
-    public class LoginTests
+    public abstract class WordpressBaseTest
     {
         [TestInitialize]
         public void Init()
         {
             Driver.Initialize();
-        }
+            PostCreator.Initialize();
 
-        [TestMethod]
-        public void Admin_User_Can_Login()
-        {
             LoginPage.GoTo();
             LoginPage.LoginAs("admin").WithPassword("123456").Login();
-
-            Assert.IsTrue(DashboardPage.IsAt, "Failed to login.");
         }
 
         [TestCleanup]
         public void Cleanup()
         {
+            PostCreator.Cleanup();
             Driver.Close();
         }
     }

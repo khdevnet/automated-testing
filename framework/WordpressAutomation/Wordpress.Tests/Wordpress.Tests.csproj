@@ -50,10 +50,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CreatePostTests.cs" />
-    <Compile Include="LoginTests.cs" />
-    <Compile Include="PageTests.cs" />
+    <Compile Include="Posts\AllPostsTests.cs" />
+    <Compile Include="Smoke\CreatePostTests.cs" />
+    <Compile Include="Smoke\LoginTests.cs" />
+    <Compile Include="Smoke\PageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WordpressBaseTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Wordpress.Automation.Framework\Wordpress.Automation.Framework.csproj">
