@@ -6,7 +6,9 @@ $ dotnet test framework\WordpressAutomationDotNetCore\Wordpress.Automation.Test\
 ```
 ### display allure report
 ```
-$ docker run --rm -it -v %cd%/allure-results:/allure-results -p 8800:80 masterandrey/docker-allure ./allure serve -p 80 /allure-results
+$ cd ./allure
+$ docker build -t=allure-report:latest .
+$ docker run --rm -it -v %cd%/allure-results:/allure-results -p 8800:80 allure-report:latest
 ```
 
 ### High level benefits
