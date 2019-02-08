@@ -1,16 +1,12 @@
 # Automated-testing
 ## Run
-### configure allure
-```
-copy allureConfig.json to Allure.Common.dll folder
-```
 ### run .net tests
 ```
 $ dotnet test framework\WordpressAutomationDotNetCore\Wordpress.Automation.Test\Wordpress.Automation.Test.csproj
 ```
 ### display allure report
 ```
-$ docker run --rm -it -v %cd%/allure-results:/allure-results -v %cd%/allure-report:/allure-report -p 8800:80 masterandrey/docker-allure ./allure serve -p 80 /allure-results
+$ docker run --rm -it -v %cd%/allure-results:/allure-results -p 8800:80 masterandrey/docker-allure ./allure serve -p 80 /allure-results
 ```
 
 ### High level benefits
