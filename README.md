@@ -1,10 +1,15 @@
 # Automated-testing
 ## Run
-### run .net tests
+### Run Wordpress
+```
+$ cd ./wordpress
+$ docker-compose up
+```
+### Run Automation UI Tests
 ```
 $ dotnet test framework\WordpressAutomationDotNetCore\Wordpress.Automation.Test\Wordpress.Automation.Test.csproj
 ```
-### display allure report
+### Display allure report
 ```
 $ cd ./allure
 $ docker build -t=allure-report:latest .
