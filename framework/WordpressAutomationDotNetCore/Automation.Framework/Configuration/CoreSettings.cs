@@ -11,7 +11,8 @@
         {
             WebdriverPath = ConfigurationProvider.Configurations.GetSection("webdriverPath").Value;
             Hostname = ConfigurationProvider.Configurations.GetSection("hostname").Value;
-            IsHeadless = !string.IsNullOrEmpty(ConfigurationProvider.Configurations.GetSection("headless").Value);
+            var headless = ConfigurationProvider.Configurations.GetSection("headless").Value;
+            IsHeadless = !string.IsNullOrEmpty(headless) && headless.ToLower() == "true";
         }
 
         public static bool IsHeadless { get; private set; }

@@ -1,4 +1,4 @@
-﻿using NUnit.Allure.Core;
+﻿using NUnit.Allure.Attributes;
 using NUnit.Framework;
 using Wordpress.Automation.Framework.Pages.Pages;
 using Wordpress.Automation.Framework.Workflows;
@@ -7,7 +7,7 @@ using Wordpress.Tests;
 namespace Wordpress.Automation.Test.Posts
 {
     [TestFixture]
-    [AllureNUnit]
+    [AllureFeature(Features.WordpressPages)]
     public class PagesTests : WordpressBaseTest
     {
         [Test]

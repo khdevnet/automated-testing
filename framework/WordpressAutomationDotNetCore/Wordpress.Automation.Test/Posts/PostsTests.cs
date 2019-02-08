@@ -1,13 +1,14 @@
-﻿using NUnit.Allure.Core;
+﻿using NUnit.Allure.Attributes;
 using NUnit.Framework;
 using Wordpress.Automation.Framework.Pages;
 using Wordpress.Automation.Framework.Workflows;
+using Wordpress.Tests;
 
 namespace Wordpress.Automation.Test.Posts
 {
     [TestFixture]
-    [AllureNUnit]
-    public class PostsTests : PostBaseTest
+    [AllureFeature(Features.WordpressPosts)]
+    public class PostsTests : WordpressBaseTest
     {
         [Test]
         public void Added_Posts_Show_Up()
@@ -32,6 +33,21 @@ namespace Wordpress.Automation.Test.Posts
             PostCreator.CreatePost();
             ListPostsPage.SearchForPost(PostCreator.PreviousTitle);
             Assert.IsTrue(ListPostsPage.DoesPostExistWithTitle(PostCreator.PreviousTitle));
+        }
+
+        [SetUp]
+        public override void Init()
+        {
+            base.Init();
+            PostCreator.Initialize();
+
+        }
+
+        [TearDown]
+        public override void Cleanup()
+        {
+            PostCreator.Cleanup();
+            base.Cleanup();
         }
     }
 }

@@ -1,25 +1,17 @@
-﻿using Automation.Framework.Core.Selenium;
-using Wordpress.Automation.Framework.Workflows;
+﻿using Automation.Framework.Core.NUnit;
 using NUnit.Framework;
-using System;
-using System.IO;
+using Wordpress.Automation.Framework.Workflows;
 
 namespace Wordpress.Tests
 {
-    public abstract class WordpressBaseTest
+    public abstract class WordpressBaseTest : EndToEndBaseTest
     {
         [SetUp]
-        public virtual void Init()
+        public override void Init()
         {
-            Driver.Initialize();
+            base.Init();
 
             AuthenticationFlow.LogIn();
-        }
-
-        [TearDown]
-        public virtual void Cleanup()
-        {
-            Driver.Close();
         }
     }
 }
