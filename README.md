@@ -1,5 +1,6 @@
 # Automated-testing
-## Run
+This example shows benefits of Automated testing, also it contains wordpress Automation tests to display an example. 
+## Run Test framework example
 ### Run Wordpress
 ```
 $ cd ./wordpress
@@ -16,7 +17,7 @@ $ docker build -t=allure-report:latest .
 $ docker run --rm -it -v %cd%/allure-results:/allure-results -p 8800:80 allure-report:latest
 ```
 
-### High level benefits
+## Automated testing benefits
 #### Automated Tests
 * Free to run as often as required
 * Run at any time
